@@ -4,7 +4,7 @@ import 'package:lebonangle/intro_screens/intro_page2.dart';
 import 'package:lebonangle/intro_screens/intro_page3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'intro_screens/page_accueil.dart';
+import 'intro_screens/navbar.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -64,7 +64,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const pageAccueil();
+                                return const navBar();
                               },
                             ),
                           );
