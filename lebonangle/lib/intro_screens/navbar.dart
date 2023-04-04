@@ -41,6 +41,13 @@ class _navBarState extends State<navBar> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text('lebonangle'),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: Container(

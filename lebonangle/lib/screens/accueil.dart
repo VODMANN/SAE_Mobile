@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lebonangle/intro_screens/products.dart';
 import 'package:lebonangle/api_service.dart';
+import 'detail_produit.dart';
 
-class pageAccueil extends StatefulWidget  {
+class pageAccueil extends StatefulWidget {
   const pageAccueil({Key? key}) : super(key: key);
 
   @override
@@ -25,9 +26,6 @@ class _HomeState extends State<pageAccueil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('REST API Example'),
-      ),
       body: _userModel == null || _userModel!.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
@@ -36,29 +34,42 @@ class _HomeState extends State<pageAccueil> {
               itemCount: _userModel!.length,
               itemBuilder: (context, index) {
                 return Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                      children: [
-                         Image(
-                          width: 200,
-                          image: NetworkImage(_userModel![index].image.toString()),
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(children: [
+                      Image(
+                        width: 200,
+                        image:
+                            NetworkImage(_userModel![index].image.toString()),
+                      ),
+                      ListTile(
+                        title: Text(_userModel![index].title.toString() +
+                            " " +
+                            _userModel![index].price.toString() +
+                            "€"),
+                        subtitle: Text(
+                          _userModel![index].category.toString(),
+                          style:
+                              TextStyle(color: Colors.black.withOpacity(0.6)),
                         ),
-
-                  ListTile(
-
-                  title: Text(_userModel![index].title.toString()+" "+_userModel![index].price.toString()+"€"),
-                  subtitle: Text(
-                      _userModel![index].category.toString(),
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                  ),
-                ),
-                Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text( _userModel![index].description.toString(), style: TextStyle(color: Colors.black.withOpacity(0.6)),),
-                )
-                ]
-                )
-                );
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailProduitScreen(id: index + 1),
+                            ),
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          _userModel![index].description.toString(),
+                          style:
+                              TextStyle(color: Colors.black.withOpacity(0.6)),
+                        ),
+                      ),
+                    ]));
               },
             ),
     );
