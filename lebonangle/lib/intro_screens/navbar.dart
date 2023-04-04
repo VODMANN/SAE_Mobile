@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lebonangle/screens/accueil.dart';
+import 'package:lebonangle/screens/login_screen.dart';
 import 'package:lebonangle/screens/settings.dart';
 
 class navBar extends StatefulWidget {
@@ -16,7 +17,7 @@ class _navBarState extends State<navBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     pageAccueil(),
     Text(
       "Favoris",
@@ -26,10 +27,7 @@ class _navBarState extends State<navBar> {
       "Publier",
       style: optionStyle,
     ),
-    Text(
-      "Profile",
-      style: optionStyle,
-    ),
+    LoginScreen(),
     pageSettings()
   ];
 

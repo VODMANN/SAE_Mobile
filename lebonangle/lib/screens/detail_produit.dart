@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lebonangle/api_service.dart';
 
-import '../intro_screens/products.dart';
+import '../models/products.dart';
 
 class DetailProduitScreen extends StatelessWidget {
   const DetailProduitScreen({super.key, required this.id});
@@ -48,39 +48,40 @@ class DetailProduitScreen extends StatelessWidget {
               );
             } else {
               return Scaffold(
-                body: Center(child: Column(children: [
-                  Image(
-                    width: 150,
-                    image: NetworkImage(product.image.toString()),
-                  ),
-                  Text(
-                    product.title.toString()
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      product.description.toString(),
-                      style:
-                          TextStyle(color: Colors.black.withOpacity(0.6)),
+                body: Center(
+                    child: Column(
+                  children: [
+                    Image(
+                      width: 150,
+                      image: NetworkImage(product.image.toString()),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(children: [
-                      Text(
-                        product.price.toString() + '€'
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: () {
-                              // Respond to button press
-                          },
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-                          icon: const Icon(Icons.add_shopping_cart, size: 18),
-                          label: const Text("Ajouter au panier"),
-                        )
-                    ],)
-                  ),
-                ],)),
+                    Text(product.title.toString()),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        product.description.toString(),
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(product.price.toString() + '€'),
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                // Respond to button press
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.teal),
+                              icon:
+                                  const Icon(Icons.add_shopping_cart, size: 18),
+                              label: const Text("Ajouter au panier"),
+                            )
+                          ],
+                        )),
+                  ],
+                )),
               );
             }
           },

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:lebonangle/intro_screens/intro_page1.dart';
 import 'package:lebonangle/intro_screens/intro_page2.dart';
