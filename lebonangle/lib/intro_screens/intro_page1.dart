@@ -4,8 +4,7 @@ class IntroPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.brown,
-      child: const Center(child: Text("Page d'intro")),
+      child: const Center(child: Text("Bienvenue sur Lebonangle !")),
     );
   }
 }

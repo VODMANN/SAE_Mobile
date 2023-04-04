@@ -58,7 +58,7 @@ class _navBarState extends State<navBar> {
               backgroundColor: Colors.black,
               color: Colors.white,
               activeColor: Colors.white,
-              tabBackgroundColor: Colors.green.shade500,
+              tabBackgroundColor: Colors.teal,
               gap: 8,
               padding: const EdgeInsets.all(4),
               tabs: [
