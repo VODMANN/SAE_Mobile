@@ -71,7 +71,6 @@ class _HomeState extends State<pageAccueil> {
                               ),
                         ),
                       ),
-                      
                       Center(child: Text(_userModel![index].price.toString() +
                             "€")),
                       IconButton(
