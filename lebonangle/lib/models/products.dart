@@ -10,7 +10,7 @@ String productToJson(List<Product?>? data) => json.encode(
 class Product {
   Product({
     this.id,
-    this.title,
+    required this.title,
     this.price,
     this.description,
     this.category,
@@ -19,7 +19,7 @@ class Product {
   });
 
   int? id;
-  String? title;
+  String title;
   double? price;
   String? description;
   String? category;
@@ -27,24 +27,24 @@ class Product {
   Rating? rating;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id: json["id"],
-    title: json["title"],
-    price: json["price"].toDouble(),
-    description: json["description"],
-    category: json["category"],
-    image: json["image"],
-    rating: Rating.fromJson(json["rating"]),
-  );
+        id: json["id"],
+        title: json["title"],
+        price: json["price"].toDouble(),
+        description: json["description"],
+        category: json["category"],
+        image: json["image"],
+        rating: Rating.fromJson(json["rating"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "title": title,
-    "price": price,
-    "description": description,
-    "category": category,
-    "image": image,
-    "rating": rating!.toJson(),
-  };
+        "id": id,
+        "title": title,
+        "price": price,
+        "description": description,
+        "category": category,
+        "image": image,
+        "rating": rating!.toJson(),
+      };
 }
 
 class Rating {
@@ -57,12 +57,12 @@ class Rating {
   int? count;
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-    rate: json["rate"].toDouble(),
-    count: json["count"],
-  );
+        rate: json["rate"].toDouble(),
+        count: json["count"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "rate": rate,
-    "count": count,
-  };
+        "rate": rate,
+        "count": count,
+      };
 }

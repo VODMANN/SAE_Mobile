@@ -19,9 +19,9 @@ class DetailProduitScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('lebonangle'),
+        title: const Text('lebonangle'),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -69,8 +69,10 @@ class DetailProduitScreen extends StatelessWidget {
                           children: [
                             Text(product.price.toString() + '€'),
                             ElevatedButton.icon(
-                              onPressed: () {
+                              onPressed: () async {
                                 // Respond to button press
+                                await service.updateCart(
+                                    1, product.id!.toInt());
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.teal),

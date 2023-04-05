@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lebonangle/models/products.dart';
 import 'package:lebonangle/api_service.dart';
+import 'package:lebonangle/screens/cart_screen.dart';
 import 'detail_produit.dart';
 
 class pageAccueil extends StatefulWidget {
@@ -100,7 +101,13 @@ class _HomeState extends State<pageAccueil> {
               ),
         floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.teal,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartScreen(),
+                  ));
+            },
             child: const Icon(Icons.shopping_cart_outlined)));
   }
 }
