@@ -12,10 +12,17 @@ class _IntroPage2 extends State<IntroPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Lottie.network(
-            'https://assets9.lottiefiles.com/packages/lf20_uqs1ib9v.json'),
-      ),
+      body: Center(child: Column(
+        children: [
+          Lottie.network(
+            'https://assets9.lottiefiles.com/packages/lf20_uqs1ib9v.json',
+            height: 350,
+            width: 350
+          ),
+          const Text("Trouvez l'article qui vous conviens")
+        ], 
+      ),),
+      
     );
   }
 }

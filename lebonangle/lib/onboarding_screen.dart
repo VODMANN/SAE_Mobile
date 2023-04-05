@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lebonangle/intro_screens/intro_page1.dart';
 import 'package:lebonangle/intro_screens/intro_page2.dart';
 import 'package:lebonangle/intro_screens/intro_page3.dart';
+import 'package:lebonangle/intro_screens/navbar.dart';
+import 'package:lebonangle/screens/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import 'intro_screens/navbar.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -52,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onTap: () {
                     _controller.jumpToPage(2);
                   },
-                  child: const Text("passer"),
+                  child: const Text("Passer"),
                 ),
 
                 // indicateur position
@@ -66,12 +66,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const navBar();
+                                return navBar();
                               },
                             ),
                           );
                         },
-                        child: const Text("compris"),
+                        child: const Text("Compris"),
                       )
                     : GestureDetector(
                         onTap: () {
@@ -79,7 +79,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn);
                         },
-                        child: const Text("suivant"),
+                        child: const Text("Suivant"),
                       ),
               ],
             ),

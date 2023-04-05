@@ -5,6 +5,11 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lebonangle/screens/accueil.dart';
 import 'package:lebonangle/screens/login_screen.dart';
 import 'package:lebonangle/screens/settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../screens/user_screen.dart';
+
+String? finalName;
 
 class navBar extends StatefulWidget {
   const navBar({super.key});
@@ -27,9 +32,19 @@ class _navBarState extends State<navBar> {
       "Publier",
       style: optionStyle,
     ),
-    LoginScreen(),
+    UserScreen(),
     pageSettings()
   ];
+
+  Future getValidationData() async{
+    final SharedPreferences sharedPreferences = 
+      await SharedPreferences.getInstance();
+    var obtainedName = sharedPreferences.getString('username');
+    setState(() {
+      finalName = obtainedName;
+    });
+    print(finalName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +53,7 @@ class _navBarState extends State<navBar> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('lebonangle'),
+        title: Text('lebonangle $finalName'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
