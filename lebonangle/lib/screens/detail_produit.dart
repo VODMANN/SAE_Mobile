@@ -71,8 +71,7 @@ class DetailProduitScreen extends StatelessWidget {
                             ElevatedButton.icon(
                               onPressed: () async {
                                 // Respond to button press
-                                await service.updateCart(
-                                    1, product.id!.toInt());
+                                await service.updateCart(1, product.id.toInt());
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.teal),

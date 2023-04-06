@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lebonangle/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../app/my_app.dart';
 
 class pageSettings extends StatefulWidget {
   const pageSettings({super.key});
@@ -20,7 +21,9 @@ class _pageSettingsState extends State<pageSettings> {
   getValue() async {
     prefs = await _prefs;
     setState(() {
-      isChecked = (prefs.containsKey("checkedValue")?prefs.getBool("checkedValue") : false)!;
+      isChecked = (prefs.containsKey("checkedValue")
+          ? prefs.getBool("checkedValue")
+          : false)!;
     });
   }
 
@@ -29,6 +32,7 @@ class _pageSettingsState extends State<pageSettings> {
     getValue();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

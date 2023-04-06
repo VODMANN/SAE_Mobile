@@ -7,6 +7,8 @@ import 'package:lebonangle/screens/login_screen.dart';
 import 'package:lebonangle/screens/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../api_service.dart';
+import '../models/products.dart';
 import '../screens/user_screen.dart';
 
 String? finalName;
@@ -20,10 +22,25 @@ class navBar extends StatefulWidget {
 
 class _navBarState extends State<navBar> {
   int _selectedIndex = 0;
+
+  late List<Product>? _userModel = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    print('Chargement des produits en cours...');
+    ApiService apiService = ApiService();
+    apiService.getProducts();
+  }
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    pageAccueil(),
+    Accueil(),
     Text(
       "Favoris",
       style: optionStyle,
@@ -36,9 +53,9 @@ class _navBarState extends State<navBar> {
     pageSettings()
   ];
 
-  Future getValidationData() async{
-    final SharedPreferences sharedPreferences = 
-      await SharedPreferences.getInstance();
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     var obtainedName = sharedPreferences.getString('username');
     setState(() {
       finalName = obtainedName;

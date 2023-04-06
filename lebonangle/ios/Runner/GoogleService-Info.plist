@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>863372390731-dcsfqkogrveleea0hj480m58kcf6m8en.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.863372390731-dcsfqkogrveleea0hj480m58kcf6m8en</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0KfsnLg1m9a5FcCrbsovSR3BYdDUW_6o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>863372390731</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.lebonangle</string>
+	<key>PROJECT_ID</key>
+	<string>lebonangle-de73a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lebonangle-de73a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:863372390731:ios:bb030bced1771e03df78ce</string>
+</dict>
+</plist>

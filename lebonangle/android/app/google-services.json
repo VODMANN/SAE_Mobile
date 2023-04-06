@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "905239143648",
-    "firebase_url": "https://sae-mobile-lebonangle-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "sae-mobile-lebonangle",
-    "storage_bucket": "sae-mobile-lebonangle.appspot.com"
+    "project_number": "863372390731",
+    "project_id": "lebonangle-de73a",
+    "storage_bucket": "lebonangle-de73a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:905239143648:android:dc2a7bfb4b9611378c5c85",
+        "mobilesdk_app_id": "1:863372390731:android:2f6ab21d76de35d4df78ce",
         "android_client_info": {
           "package_name": "com.example.lebonangle"
         }
       },
       "oauth_client": [
         {
-          "client_id": "905239143648-a5ee5deoul9tltnmuc6dsujueba5jrru.apps.googleusercontent.com",
+          "client_id": "863372390731-f0jph1rshvi0h96733lnhe3ik22driav.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDUUUkb1ZZWLekenqQeAbCy_zDcBASy9xk"
+          "current_key": "AIzaSyCGV9acewqp_KiUOzN8e_bO6DOsdjYE-G0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "905239143648-a5ee5deoul9tltnmuc6dsujueba5jrru.apps.googleusercontent.com",
+              "client_id": "863372390731-f0jph1rshvi0h96733lnhe3ik22driav.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

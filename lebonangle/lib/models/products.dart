@@ -1,30 +1,27 @@
 import 'dart:convert';
 
-List<Product?>? productFromJson(String str) => json.decode(str) == null
-    ? []
-    : List<Product?>.from(json.decode(str)!.map((x) => Product.fromJson(x)));
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-String productToJson(List<Product?>? data) => json.encode(
-    data == null ? [] : List<dynamic>.from(data.map((x) => x!.toJson())));
+List<Product> productFromJson(String str) => json.decode(str) == null
+    ? []
+    : List<Product>.from(json.decode(str)!.map((x) => Product.fromJson(x)));
 
 class Product {
   Product({
-    this.id,
+    required this.id,
     required this.title,
-    this.price,
-    this.description,
-    this.category,
-    this.image,
-    this.rating,
+    required this.price,
+    required this.description,
+    required this.category,
+    required this.image,
   });
 
-  int? id;
+  int id;
   String title;
-  double? price;
-  String? description;
-  String? category;
-  String? image;
-  Rating? rating;
+  double price;
+  String description;
+  String category;
+  String image;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -33,7 +30,6 @@ class Product {
         description: json["description"],
         category: json["category"],
         image: json["image"],
-        rating: Rating.fromJson(json["rating"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -43,26 +39,42 @@ class Product {
         "description": description,
         "category": category,
         "image": image,
-        "rating": rating!.toJson(),
       };
-}
 
-class Rating {
-  Rating({
-    this.rate,
-    this.count,
-  });
-
-  double? rate;
-  int? count;
-
-  factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-        rate: json["rate"].toDouble(),
-        count: json["count"],
+  static Future<List<Product>> getFirebaseProduits() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection("produits").get();
+    List<Product> produits = [];
+    for (var element in querySnapshot.docs) {
+      produits.add(
+        Product.nouveauProduit(
+          id: element['id'],
+          title: element['title'],
+          price: element['price'],
+          description: element['description'],
+          image: element['images'],
+          category: element['category'],
+        ),
       );
+    }
+    return produits;
+  }
 
-  Map<String, dynamic> toJson() => {
-        "rate": rate,
-        "count": count,
-      };
+  static nouveauProduit(
+      {required id,
+      required title,
+      required price,
+      required description,
+      required image,
+      required category}) {
+    return Product(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      image: image,
+      category: category,
+    );
+  }
 }

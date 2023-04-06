@@ -60,7 +60,7 @@ class CartScreen extends StatelessWidget {
 
                       return ListTile(
                         title: Text(p.title),
-                        leading: Image.network(p.image ?? '', height: 40),
+                        leading: Image.network(p.image, height: 40),
                         subtitle: Text('Quantité : ${product['quantity']}'),
                         trailing: IconButton(
                           icon: const Icon(Icons.delete, color: Colors.red),
