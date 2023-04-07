@@ -25,7 +25,8 @@ class _navBarState extends State<navBar> {
 
   late List<Product>? _userModel = [];
 
-  @override
+/* Fonction permettant de générer les produits de l'api FakeStore et de les mettre sur la BD Firebase */
+/*   @override
   void initState() {
     super.initState();
     loadProducts();
@@ -35,7 +36,7 @@ class _navBarState extends State<navBar> {
     print('Chargement des produits en cours...');
     ApiService apiService = ApiService();
     apiService.getProducts();
-  }
+  } */
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
@@ -53,16 +54,6 @@ class _navBarState extends State<navBar> {
     pageSettings()
   ];
 
-  Future getValidationData() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    var obtainedName = sharedPreferences.getString('username');
-    setState(() {
-      finalName = obtainedName;
-    });
-    print(finalName);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +61,7 @@ class _navBarState extends State<navBar> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('lebonangle $finalName'),
+        title: Text('lebonangle'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,

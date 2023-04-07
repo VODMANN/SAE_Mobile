@@ -61,6 +61,18 @@ class Product {
     return produits;
   }
 
+    static Product fromSnapshot(DocumentSnapshot snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    return Product(
+      id: data['id'],
+      title: data['title'],
+      image: data['image'],
+      price: data['price'],
+      description: data['description'],
+      category: data['category'],
+    );
+  }
+
   static nouveauProduit(
       {required id,
       required title,
