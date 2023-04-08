@@ -51,7 +51,7 @@ class _navBarState extends State<navBar> {
       style: optionStyle,
     ),
     UserScreen(),
-    pageSettings()
+    SettingsPage()
   ];
 
   @override
