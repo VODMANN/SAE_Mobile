@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api_service.dart';
 import '../models/products.dart';
+import '../screens/favoris_page.dart';
 import '../screens/user_screen.dart';
 
 String? finalName;
@@ -42,10 +43,7 @@ class _navBarState extends State<navBar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
     Accueil(),
-    Text(
-      "Favoris",
-      style: optionStyle,
-    ),
+    FavorisPage(),
     Text(
       "Publier",
       style: optionStyle,
@@ -62,13 +60,6 @@ class _navBarState extends State<navBar> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text('lebonangle'),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
       ),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: Container(
