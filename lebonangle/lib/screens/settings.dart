@@ -1,52 +1,59 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:lebonangle/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-class pageSettings extends StatefulWidget {
-  const pageSettings({super.key});
-
+class SettingsPage extends StatefulWidget {
   @override
-  State<pageSettings> createState() => _pageSettingsState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _pageSettingsState extends State<pageSettings> {
-  bool isChecked = false;
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late SharedPreferences prefs;
-  getValue() async {
-    prefs = await _prefs;
-    setState(() {
-      isChecked = (prefs.containsKey("checkedValue")?prefs.getBool("checkedValue") : false)!;
-    });
-  }
+class _SettingsPageState extends State<SettingsPage> {
+  bool showIntroPages = true;
 
   @override
   void initState() {
-    getValue();
     super.initState();
+    _loadSettings();
   }
+
+  void _loadSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      showIntroPages = prefs.getBool('showIntroPages') ?? true;
+    });
+  }
+
+  void _saveSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('showIntroPages', showIntroPages);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CheckboxListTile(
-          title: Text("Introduction"),
-          subtitle:
-              Text("Souhaitez vous passer l'introduction à chaque démarrage ?"),
-          value: isChecked,
-          onChanged: (bool? value) {
-            if (isChecked == true) {}
-            setState(() {
-              isChecked = value!;
-              print(isChecked);
-            });
-            prefs.setBool("checkedValue", isChecked);
-            Get.to(MyApp());
-          },
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Pages d'introduction",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            SwitchListTile(
+              title: const Text("Afficher les pages d'introduction"),
+              value: showIntroPages,
+              onChanged: (value) {
+                setState(() {
+                  showIntroPages = value;
+                  _saveSettings();
+                });
+              },
+            ),
+          ],
         ),
       ),
     );

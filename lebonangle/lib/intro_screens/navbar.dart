@@ -3,11 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lebonangle/screens/accueil.dart';
-import 'package:lebonangle/screens/login_screen.dart';
 import 'package:lebonangle/screens/settings.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../screens/user_screen.dart';
+import '../models/products.dart';
+import '../screens/favoris_page.dart';
+import '../screens/publier_produit_screen.dart';
 
 String? finalName;
 
@@ -20,31 +19,29 @@ class navBar extends StatefulWidget {
 
 class _navBarState extends State<navBar> {
   int _selectedIndex = 0;
+
+/* Fonction permettant de générer les produits de l'api FakeStore et de les mettre sur la BD Firebase */
+/*   @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    print('Chargement des produits en cours...');
+    ApiService apiService = ApiService();
+    apiService.getProducts();
+  } */
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    pageAccueil(),
-    Text(
-      "Favoris",
-      style: optionStyle,
-    ),
-    Text(
-      "Publier",
-      style: optionStyle,
-    ),
-    UserScreen(),
-    pageSettings()
+    Accueil(),
+    FavorisPage(),
+    AjoutProduitPage(),
+    Text('User'),
+    SettingsPage()
   ];
-
-  Future getValidationData() async{
-    final SharedPreferences sharedPreferences = 
-      await SharedPreferences.getInstance();
-    var obtainedName = sharedPreferences.getString('username');
-    setState(() {
-      finalName = obtainedName;
-    });
-    print(finalName);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +50,7 @@ class _navBarState extends State<navBar> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('lebonangle $finalName'),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        title: Text('lebonangle'),
       ),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: Container(
