@@ -5,7 +5,6 @@ import 'package:lebonangle/intro_screens/intro_page1.dart';
 import 'package:lebonangle/intro_screens/intro_page2.dart';
 import 'package:lebonangle/intro_screens/intro_page3.dart';
 import 'package:lebonangle/intro_screens/navbar.dart';
-import 'package:lebonangle/screens/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {

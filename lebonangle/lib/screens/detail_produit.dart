@@ -1,18 +1,65 @@
-// ignore_for_file: prefer_const_constructors
+import 'dart:async';
+import 'dart:convert';
 
-/* // ignore_for_file: prefer_interpolation_to_compose_strings
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:lebonangle/api_service.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/products.dart';
 
-class DetailProduitScreen extends StatelessWidget {
-  const DetailProduitScreen({super.key, required this.id});
+class DetailProduit extends StatefulWidget {
+  final Product product;
 
-  final int id;
-  ApiService get service => GetIt.I<ApiService>();
+  DetailProduit({required this.product});
+
+  @override
+  _DetailProduitState createState() => _DetailProduitState();
+}
+
+class _DetailProduitState extends State<DetailProduit> {
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  Completer<void> _primaryCompleter = Completer();
+
+  // initialisation de SharedPreferences
+  late SharedPreferences _prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initPrefs();
+  }
+
+  Future<void> initPrefs() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
+
+  void _addToPanier(Product product) async {
+    final prefs = await SharedPreferences.getInstance();
+    final panierString = prefs.getString('panier');
+    List<Product> panier = [];
+
+    if (panierString != null) {
+      final panierJson = json.decode(panierString);
+      panier = panierJson
+          .map((favori) => Product.fromJson(favori))
+          .toList()
+          .cast<Product>();
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: const Text('Produit ajouté aux panier !')));
+    }
+
+    if (panier.any((favori) => favori.id == product.id)) {
+      return;
+    }
+
+    panier.add(product);
+    final panierJson = json.encode(panier);
+    await prefs.setString('panier', panierJson);
+
+    // Vérifier si le completer n'a pas encore été utilisé
+    if (!_primaryCompleter.isCompleted) {
+      _primaryCompleter.complete();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +68,7 @@ class DetailProduitScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: const Text('lebonangle'),
+        title: Text(widget.product.title),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -30,130 +77,52 @@ class DetailProduitScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: FutureBuilder(
-          future: service.getProduct(id),
-          builder: (BuildContext context, AsyncSnapshot<Product?> snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final product = snapshot.data;
-
-            if (product == null) {
-              return const Center(
-                child: Text(
-                  'Aucun produit trouvé !',
-                  style: TextStyle(color: Colors.red),
-                ),
-              );
-            } else {
-              return Scaffold(
-                body: Center(
-                    child: Column(
-                  children: [
-                    Image(
-                      width: 150,
-                      image: NetworkImage(product.image.toString()),
-                    ),
-                    Text(product.title.toString()),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        product.description.toString(),
-                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Text(product.price.toString() + '€'),
-                            ElevatedButton.icon(
-                              onPressed: () async {
-                                // Respond to button press
-                                await service.updateCart(1, product.id.toInt());
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.teal),
-                              icon:
-                                  const Icon(Icons.add_shopping_cart, size: 18),
-                              label: const Text("Ajouter au panier"),
-                            )
-                          ],
-                        )),
-                  ],
-                )),
-              );
-            }
-          },
-        ),
-      ),
-    );
-  }
-}
- */
-
-import 'package:flutter/material.dart';
-import '../models/product_view.dart';
-import '../models/products.dart';
-
-class DetailProduit extends StatelessWidget {
-  final Product product;
-
-  DetailProduit({required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text(product.title),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            Container(
+              height: 300,
+              width: double.infinity,
               child: Image.network(
-                product.image,
-                height: 200.0,
+                widget.product.image,
+                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
-              product.title,
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                widget.product.title,
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
-              'Prix: ${product.price} FCFA',
-              style: TextStyle(fontSize: 20.0),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                widget.product.description,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ),
-            SizedBox(height: 16.0),
-            Text(
-              'Description:',
-              style: TextStyle(fontSize: 20.0),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                '${widget.product.price} €',
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
-            SizedBox(height: 8.0),
-            Text(
-              product.description,
-              style: TextStyle(fontSize: 18.0),
+            SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  _addToPanier(widget.product);
+                },
+                child: Text('Ajouter au panier'),
+              ),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),

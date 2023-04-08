@@ -3,14 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lebonangle/screens/accueil.dart';
-import 'package:lebonangle/screens/login_screen.dart';
 import 'package:lebonangle/screens/settings.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../api_service.dart';
 import '../models/products.dart';
 import '../screens/favoris_page.dart';
-import '../screens/user_screen.dart';
+import '../screens/publier_produit_screen.dart';
 
 String? finalName;
 
@@ -23,8 +19,6 @@ class navBar extends StatefulWidget {
 
 class _navBarState extends State<navBar> {
   int _selectedIndex = 0;
-
-  late List<Product>? _userModel = [];
 
 /* Fonction permettant de générer les produits de l'api FakeStore et de les mettre sur la BD Firebase */
 /*   @override
@@ -44,11 +38,8 @@ class _navBarState extends State<navBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     Accueil(),
     FavorisPage(),
-    Text(
-      "Publier",
-      style: optionStyle,
-    ),
-    UserScreen(),
+    AjoutProduitPage(),
+    Text('User'),
     SettingsPage()
   ];
 

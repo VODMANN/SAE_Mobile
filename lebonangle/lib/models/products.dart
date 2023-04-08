@@ -33,12 +33,12 @@ class Product {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "price": price,
-        "description": description,
-        "category": category,
-        "image": image,
+        'id': id,
+        'title': title,
+        'price': price,
+        'description': description,
+        'category': category,
+        'image': image,
       };
 
   static Future<List<Product>> getFirebaseProduits() async {
@@ -61,7 +61,7 @@ class Product {
     return produits;
   }
 
-    static Product fromSnapshot(DocumentSnapshot snapshot) {
+  static Product fromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     return Product(
       id: data['id'],
