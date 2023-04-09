@@ -34,6 +34,7 @@ Les utilisateurs peuvent acheter des produits en ajoutant des produits à leur p
 - `shared_preferences: ^2.1.0`
 - `provider: ^6.0.5`
 
-## Conclusion
-L'application est entièrement fonctionnelle et fournit une plateforme conviviale pour la vente et l'achat d'objets d'occasion. L'utilisation de Firebase facilite la mise en œuvre de fonctionnalités telles que l'authentification, le stockage de données et le traitement des commandes. L'interface utilisateur est intuitive et facile à naviguer, offrant une expérience utilisateur agréable pour les acheteurs et les vendeurs.
+## Lancer l'application 
 
+Pour lancer l'application, vous pouvez récupérer le code, télécharger les différents packages utilisés.
+Vous pouvez utiliser un émulateur depuis votre IDE ou alors installé la version APK fourni dans la section Release.
