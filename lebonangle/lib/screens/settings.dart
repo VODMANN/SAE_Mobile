@@ -25,6 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void _saveSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('showIntroPages', showIntroPages);
+    await prefs.commit();
   }
 
   @override
