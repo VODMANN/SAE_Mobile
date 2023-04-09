@@ -1,5 +1,10 @@
+
 # Récapitulatif de l'application
 L'application développée est une marketplace de vente d'objets d'occasion nommée "LeBonAngle". Les utilisateurs peuvent vendre des produits en créant des annonces avec des informations sur le produit et des images. Les acheteurs peuvent parcourir les annonces et effectuer des achats.
+
+## Développeurs
+Léo Vodable
+Enzo Erdmann
 
 ## Fonctionnalités
 
@@ -31,3 +36,4 @@ Les utilisateurs peuvent acheter des produits en ajoutant des produits à leur p
 
 ## Conclusion
 L'application est entièrement fonctionnelle et fournit une plateforme conviviale pour la vente et l'achat d'objets d'occasion. L'utilisation de Firebase facilite la mise en œuvre de fonctionnalités telles que l'authentification, le stockage de données et le traitement des commandes. L'interface utilisateur est intuitive et facile à naviguer, offrant une expérience utilisateur agréable pour les acheteurs et les vendeurs.
+
