@@ -37,4 +37,4 @@ Les utilisateurs peuvent acheter des produits en ajoutant des produits à leur p
 ## Lancer l'application 
 
 Pour lancer l'application, vous pouvez récupérer le code, télécharger les différents packages utilisés.
-Vous pouvez utiliser un émulateur depuis votre IDE ou alors installé la version APK fourni dans la section Release.
+Vous pouvez utiliser un émulateur depuis votre IDE pour utiliser l'application.
