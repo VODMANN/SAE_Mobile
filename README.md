@@ -3,8 +3,8 @@
 L'application développée est une marketplace de vente d'objets d'occasion nommée "LeBonAngle". Les utilisateurs peuvent vendre des produits en créant des annonces avec des informations sur le produit et des images. Les acheteurs peuvent parcourir les annonces et effectuer des achats.
 
 ## Développeurs
-Léo Vodable
-Enzo Erdmann
+- Léo Vodable
+- Enzo Erdmann
 
 ## Fonctionnalités
 
